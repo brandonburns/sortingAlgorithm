@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title>Shell Sort Algorithm</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>Shell Sort Algorithm
+	</header>
+	<main>
+		<section>
+			<input id="input1"></input>
+			<input id="input2"></input>
+			<input id="input3"></input>
+			<input id="input4"></input>
+			<input id="input5"></input>
+			<input id="input6"></input>
+			<input id="input7"></input>
+			<input id="input8"></input>
+		</section>
+		<button id="button">Shell Sort
+		</button>
+		<button id="clear">Reset
+		</button>
+		<button id="test">test
+		</button>
+		<p id="array">
+		</p>
+		<p id="arraySorted">
+		</p>
+	</main>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+function sortArray(array) {
+    var gapSize = Math.floor(array.length / 2);
+
+    while(gapSize > 0) {
+      for(i = gapSize; i < array.length; i++) {
+        temp = array[i];
+        for(j = i; j >= gapSize && array[j - gapSize] > temp; j -= gapSize) {
+          array[j] = array[j - gapSize];
+        }
+        array[j] = temp;
+      }
+
+      gapSize = Math.floor(gapSize / 2);
+    }
+
+    return array;
+}
+
+function showSort() {
+
+	var contents = [];
+
+	var index1 = Number($('#input1').val());
+	var index2 = Number($('#input2').val());
+	var index3 = Number($('#input3').val());
+	var index4 = Number($('#input4').val());
+	var index5 = Number($('#input5').val());
+	var index6 = Number($('#input6').val());
+	var index7 = Number($('#input7').val());
+	var index8 = Number($('#input8').val());
+
+	contents.push(index1);
+	contents.push(index2);
+	contents.push(index3);
+	contents.push(index4);
+	contents.push(index5);
+	contents.push(index6);
+	contents.push(index7);
+	contents.push(index8);
+
+	$('#arraySorted').append(sortArray(contents).join(' '));
+}
+
+function clearArea() {
+	$('#arraySorted').empty();
+}
+
+function test() {
+	console.log($('#input1').val());
+}
+
+$('#button').on('click', showSort);
+$('#clear').on('click', clearArea);
+$('#test').on('click', test);
+</script>
+<section id="space"></section>
+<p>To learn more about the Shell Sort Algorithm visit:</p>
+<a href="http://en.wikipedia.org/wiki/Shellsort">Shell Sort Wiki</a>
+</body>
+</html>
